@@ -1,9 +1,9 @@
-n_simulaciones: 500
+n_simulaciones: 100
 n_cores: 10
 
-coaliciones: 'Concejales'
+coaliciones: 'Juani_2'
 
-experiment_tag: 'experimento_013_ChV_separado'
+experiment_tag: 'experimento_016_Juani_2'
 
 # Nuevos votos de Evopoli, se le roban a la UDI y RN.
 # Elasticidades: 1 = udi + rn
