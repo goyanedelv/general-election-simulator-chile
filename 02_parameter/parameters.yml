@@ -1,9 +1,12 @@
 n_simulaciones: 100
 n_cores: 10
 
-coaliciones: 'Juani_2'
+coaliciones: 'PostPlebiscito'
 
-experiment_tag: 'experimento_016_Juani_2'
+experiment_tag: 'experimento_018_generalized_2'
+
+# Modos: 'concejales', 'convencionales', 'diputados'
+modo: 'convencionales'
 
 # Nuevos votos de Evopoli, se le roban a la UDI y RN.
 # Elasticidades: 1 = udi + rn

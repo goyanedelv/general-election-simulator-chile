@@ -4,7 +4,7 @@
 
 rm(list=ls())
     
-setwd("C:/Users/goyan/Desktop/Simulador_electoral")
+#setwd("C:/Users/goyan/Desktop/Simulador_electoral")
 
 # Cargar librerias
 source('00_code/libraries.R')
