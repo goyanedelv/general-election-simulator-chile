@@ -3,7 +3,7 @@ n_cores: 10
 
 coaliciones: 'PostPlebiscito'
 
-experiment_tag: 'experimento_018_generalized_2'
+experiment_tag: 'experimento_019_generalized_3'
 
 # Modos: 'concejales', 'convencionales', 'diputados'
 modo: 'convencionales'

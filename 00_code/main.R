@@ -4,14 +4,14 @@
 
 rm(list=ls())
     
-#setwd("C:/Users/goyan/Desktop/Simulador_electoral")
+setwd(getwd())
 
 # Cargar librerias
-source('00_code/libraries.R')
+source('00_code/01_data_science/libraries.R')
 # Cargar funciones de simulación
-source('00_code/simulador.R')
+source('00_code/01_data_science/simulador.R')
 #Cargar funciones de creación de escenarios
-source('00_code/scenario_creator.R')
+source('00_code/01_data_science/scenario_creator.R')
 
 SIMULATE_NOW_MANY()
 

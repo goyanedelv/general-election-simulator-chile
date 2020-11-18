@@ -1,3 +1,3 @@
 # Simulador_electoral
 Simulador electoral
-To-Do: habilitar opción de constituyentes
+    - Generar funcionalidad de cuantos votos se necesitan por distrito pa salir electo 
