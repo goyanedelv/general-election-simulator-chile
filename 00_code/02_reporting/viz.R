@@ -11,7 +11,7 @@ create_densities_party <- function(data, new_output_path){
     
     g <- ggplot(data_2, aes(Partido, Asientos_ganados))
     g + geom_violin() + 
-    labs(title="Distribucion de representantes electos", 
+    labs(title="Distribucion de representantes por partido", 
         x="Partido",
         y="Representantes electos")
     
@@ -30,7 +30,7 @@ create_densities_coalition <- function(data, new_output_path){
     
     g <- ggplot(data_2, aes(Coalicion, Asientos_ganados))
     g + geom_violin() + 
-    labs(title="Distribucion de representantes electos", 
+    labs(title="Distribucion de representantes por coalicion", 
         x="Coalicion",
         y="Representantes electos")
     
@@ -79,7 +79,7 @@ create_chamber <- function(data, new_output_path){
     result = election(layout, party_global$Asientos_ganados)
     result$coa = df$coa[result$party]
 
-    plotted_chamber= ggplot(result, aes(x, y)) + geom_point(aes(colour = coa)) +
+    plotted_chamber= ggplot(result, aes(x, y)) + geom_point(aes(colour = coa, size = 3)) +
         theme(axis.text.x = element_blank(), axis.text.y = element_blank(), axis.ticks = element_blank(), 
         axis.title.x=element_blank(),  axis.title.y=element_blank(), panel.background = element_rect(fill = "white", colour = "white") ) + 
         scale_color_discrete(name='Coalicion')

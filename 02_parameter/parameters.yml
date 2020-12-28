@@ -1,9 +1,9 @@
 n_simulaciones: 100
 n_cores: 10
 
-coaliciones: 'PostPlebiscito'
+coaliciones: 'D2020'
 
-experiment_tag: 'experimento_019_generalized_3'
+experiment_tag: 'experimento_022_diciembre2020'
 
 # Modos: 'concejales', 'convencionales', 'diputados'
 modo: 'convencionales'
@@ -30,8 +30,8 @@ elesticidad_rn_pri: 0.3333
 elesticidad_evo_pri: 0.3333
 
 # Elasticidades RD
-elasticidad_rd_ppd: 0.2
-elasticidad_rd_ps: 0.2
+elasticidad_rd_ppd: 0.25
+elasticidad_rd_ps: 0.25
 
 # Movimiento DC
 upper_dc: 1.1

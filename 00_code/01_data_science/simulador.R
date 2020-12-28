@@ -11,7 +11,7 @@
 		seats_raw = read.xlsx('02_parameter/01_diccionarios_cupos/Cupos_Concejales.xlsx')
 		asientos <- seats_raw$Cupo
 	} else if(parameters['modo'][[1]] == 'convencionales'){
-		seats_raw = read.xlsx('02_parameter/01_diccionarios_cupos/Cupos_Diputados.xlsx') #update
+		seats_raw = read.xlsx('02_parameter/01_diccionarios_cupos/Cupos_Convencionales.xlsx')
 		asientos <- seats_raw$Cupo
 	} else if(parameters['modo'][[1]] == 'diputados'){
 		seats_raw = read.xlsx('02_parameter/01_diccionarios_cupos/Cupos_Diputados.xlsx')
@@ -19,20 +19,11 @@
 	}
 
 	# 0.5. Cargar coaliciones
-		dicc_02_raw = read.csv("02_parameter/02_diccionario_coaliciones/diccionario_siglacoa_v2.csv", sep=';')
+		dicc_02_raw = read.xlsx("02_parameter/02_diccionario_coaliciones/diccionario_siglacoa_v2.xlsx")#, sep=';')
 		scenario = parameters['coaliciones'][[1]]
 
 	# 0.6. Cargar de datos a pipeline de simulación
 		data_dip17 = data_original
-
-	# 0.7. Overrider del ID municipal (default) por ID distrito (modo: concejales, convecionales)
-	#	if(parameters['modo'][[1]] != 'concejales'){ 
-	#		distrito_comuna = read.xlsx("02_parameter/00_otros_diccionarios/id_distrito_a_id_comuna.xlsx")
-	#		data_dip17 = merge(data_dip17,distrito_comuna)
-	#		data_dip17$ID = data_dip17$ID_2
-	#		data_dip17$ID_2 = NULL
-
-	#	}
 
 # 2. Construir coaliciones
 	dicc_02 = dicc_02_raw[,c("Sigla",scenario)]
@@ -154,27 +145,7 @@
 
 }
 
-# 5. Función simulación 1 escenario
-#	SIMULATE_NOW_SINGLE <-function(){ 
-#
-#		# 5.1. Simular data pre-base (dip 17)
-#
-#		gran_tabla = ElectoSimulate(data_original_coa)
-#
-#		print(tbl_df(gran_tabla[[1]]), n=40)
-#		print(tbl_df(gran_tabla[[2]]), n=40)
-#
-#
-#		# 5.2. Guardar datos
-#
-#		write.xlsx(gran_tabla[[1]], file = paste0("98_output/",scenario,"_pacto_concejales.xlsx"))
-#		write.xlsx(gran_tabla[[2]], file = paste0("98_output/",scenario,"_partido_concejales.xlsx"))
-#		write.xlsx(gran_tabla[[3]], file = paste0("98_output/",scenario,"_distritos_concejales.xlsx"))
-#
-#		paste0("Datos guardados en SimulaConvencion/98_output/")
-
-#}
-# 6. Función simulación MÚLTIPLES escenario
+# 5. Función simulación MÚLTIPLES escenario
 	SIMULATE_NOW_MANY <-function(){ 
 		n_escenarios = parameters['n_simulaciones'][[1]]
 
@@ -232,5 +203,6 @@
 		create_densities_party(wrapper_party, new_output_path)
 		create_densities_coalition(wrapper_coa, new_output_path)
 		create_chamber(wrapper_coa, new_output_path)
+		print(coa_global)
 }
 

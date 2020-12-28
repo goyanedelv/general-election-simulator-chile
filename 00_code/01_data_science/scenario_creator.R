@@ -1,10 +1,7 @@
 # TO-DO
-    # Variabilidad DC
-    # [DONE] Variabilidad Evopoli-no-2016
-    # [DONE] Variabilidad RD
+    # Variabilidad votos nuevos
 
 # Carga datos y define carpeta
-    #setwd("C:/Users/goyan/Desktop/20191227_SimulaConvencion/")
 
     df = data_original #read.csv('01_input/data_original_concejales_2016.csv', sep=';', fileEncoding = 'UTF-8-BOM')
     data_jak = read.csv('03_supplemental_data/votacion_jak.csv')
@@ -122,7 +119,6 @@ Simulador_puntual <- function(full_new,full, sim_tag){
         elasticidad_evo_udi = 1-elasticidad_evo_rn
 
         for (i in 1:346){
-            #print(i)
             votacion_i = full_new$Votacion[full_new$Sigla == 'EVO' & full_new$ID == i]
             if(votacion_i>0){
 
@@ -143,7 +139,6 @@ Simulador_puntual <- function(full_new,full, sim_tag){
 
             }
             else{
-                # TO-DO: agregarle variablidad nueva
                 nuevos_votos_evo = runif(1,
                                         round(sum(full$Votacion[full$ID == i])*p_no_2016_lower,0),
                                         round(sum(full$Votacion[full$ID == i])*p_no_2016_upper,0))
@@ -157,8 +152,6 @@ Simulador_puntual <- function(full_new,full, sim_tag){
                 full_new$Votacion[full_new$Sigla == 'EVO' & full_new$ID == i] = nuevos_votos_evo
 
             }
-
-
         }
     #
 
@@ -176,7 +169,6 @@ Simulador_puntual <- function(full_new,full, sim_tag){
                 votacion_rd_upper = max(votacion_rd_dip_2017,votacion_rd_con_2016)
                 votacion_rd_lower = votacion_rd_con_2016
                 
-                
                 votacion_rd = runif(1,votacion_rd_lower, votacion_rd_upper)
 
                 nuevos_votos_rd = votacion_rd - votacion_rd_con_2016
@@ -189,12 +181,10 @@ Simulador_puntual <- function(full_new,full, sim_tag){
                 votacion_ps =  full_new$Votacion[full_new$Sigla == 'PS' & full_new$ID == i] 
                 full_new$Votacion[full_new$Sigla == 'PS' & full_new$ID == i] = max(0, votacion_ps-nuevos_votos_rd*elasticidad_rd_ps)
 
-
             }
     #
     
-    # Variabilidad DC
-    # TO-DO, variabilidad DC
+    # To-do: Votos 'nuevos'
 
 
     full_new$Simulacion = sim_tag
