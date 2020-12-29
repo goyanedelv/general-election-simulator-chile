@@ -1,39 +1,40 @@
-n_simulaciones: 100
+n_simulaciones: 500
 n_cores: 10
 
 coaliciones: 'D2020'
 
-experiment_tag: 'experimento_022_diciembre2020'
+experiment_tag: 'experimento_026_test_convencionales'
 
 # Modos: 'concejales', 'convencionales', 'diputados'
 modo: 'convencionales'
 
 # Nuevos votos de Evopoli, se le roban a la UDI y RN.
 # Elasticidades: 1 = udi + rn
-elasticidad_evo_rn: 0.5
-percentil_maximo_evo: 0.9
-percentil_no2016_evo: 0.5
-percentil_no2016_evo_lower: 0.25
-percentil_no2016_evo_upper: 0.75
+elasticidad_evo_rn: 0.5 # cuando EVO saca 'nuevos votos' sobre su histórico, le roba a UDI y RN según elasticidad
+percentil_maximo_evo: 0.95 # establece techo para evitar outliers
+percentil_no2016_evo_lower: 0.2 # p10 es ~1%; p20 es ~1.5%; p30 es ~2.0%; p40 es ~2.6%; p50 es ~3.5%
+percentil_no2016_evo_upper: 0.8 # p60 es ~4.7%; p70 es ~5.8%; p80 es ~7.4%; p90 es ~10.0%; p95 es ~12.5%
 
 # Nuevos votos de JAK, se le roban a la UDI y RN
 # Elasticidades: 1 = udi + rn
-elasticidad_jak_rn: 0.4
+elasticidad_jak_rn: 0.45
 
-# Máximo y minimo alcanzable en base a su elección presidencial
+# Máximo y minimo alcanzable en base a su elección presidencial, percentiles
 factor_ajuste_maximo_jak: 0.75
 factor_ajuste_minimo_jak: 0.25
 
 # Repartija del PRI
 # 1 = rn + evo + dc
-elesticidad_rn_pri: 0.3333
-elesticidad_evo_pri: 0.3333
+elesticidad_rn_pri: 0.4
+elesticidad_evo_pri: 0.4
 
 # Elasticidades RD
+# Crece sacándole votos a la centro izquierda
 elasticidad_rd_ppd: 0.25
 elasticidad_rd_ps: 0.25
 
 # Movimiento DC
-upper_dc: 1.1
-lower_dc: 0.9
+# Mantiene su historico con variabilidad hacia arriba y hacia abajo
+upper_dc: 1.2
+lower_dc: 0.8
 

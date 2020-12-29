@@ -18,7 +18,7 @@
 # Preámbulo
     totals_comuna <- df %>% 
         group_by(ID) %>%
-        summarise(Votacion = sum(Votacion))
+        summarise(Votacion = sum(Votacion), .groups = 'drop')
 
     full = merge(df,totals_comuna, by ='ID')
     colnames(full) = c('ID', 'Sigla','Comuna','Votacion','Total_comuna')
@@ -107,8 +107,6 @@ Simulador_puntual <- function(full_new,full, sim_tag){
     #
 
     # Mejora Evopoli
-
-        #p_no_2016 = quantile(full$Share[full$Sigla == "EVO" & full$Votacion >0], parameters['percentil_no2016_evo'][[1]])
         
         p_no_2016_lower = quantile(full$Share[full$Sigla == "EVO" & full$Votacion >0], parameters['percentil_no2016_evo_lower'][[1]])
         p_no_2016_upper = quantile(full$Share[full$Sigla == "EVO" & full$Votacion >0], parameters['percentil_no2016_evo_upper'][[1]])

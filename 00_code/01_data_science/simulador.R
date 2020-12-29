@@ -181,28 +181,33 @@
 		colnames(wrapper_coa) = c('Coalicion', 'Simulacion','Asientos_ganados')
 
 		coa_global = wrapper_coa %>% group_by(Coalicion) %>%
-					summarise(Asientos_ganados = mean(Asientos_ganados), .groups = 'drop')
+					summarise(Asientos_ganados = median(Asientos_ganados), .groups = 'drop')
 
 		wrapper_party = wrapper_total_detalle %>% 
 					group_by(Sigla, Simulacion) %>%
 					summarise(Votacion = sum(Cupos_Partido), .groups = 'drop')
 		colnames(wrapper_party) = c('Partido', 'Simulacion','Asientos_ganados')
 		party_global = wrapper_party %>% group_by(Partido) %>%
-					summarise(Asientos_ganados = mean(Asientos_ganados), .groups = 'drop')
+					summarise(Asientos_ganados = median(Asientos_ganados), .groups = 'drop')
 		
 		new_output_path = paste0('98_output/',parameters['experiment_tag'][[1]])
 		dir.create(new_output_path)
 		write_yaml(parameters, file=paste0(new_output_path, '/used_parameter.yml'), fileEncoding = "UTF-8")
 		write.xlsx(wrapper_coa, file=paste0(new_output_path, '/simulacion_coa.xlsx'), row.names = FALSE)
 		write.xlsx(wrapper_party, file=paste0(new_output_path,'/simulacion_partido.xlsx'), row.names = FALSE)
-		write.xlsx(coa_global, file=paste0(new_output_path,'/coalicion_resumen_promedio.xlsx'), row.names = FALSE)
-		write.xlsx(party_global, file=paste0(new_output_path,'/partido_resumen_promedio.xlsx'), row.names = FALSE)
+		write.xlsx(coa_global, file=paste0(new_output_path,'/coalicion_resumen_median.xlsx'), row.names = FALSE)
+		write.xlsx(party_global, file=paste0(new_output_path,'/partido_resumen_median.xlsx'), row.names = FALSE)
 		write.xlsx(wrapper_total_detalle, file=paste0(new_output_path,'/simulacion_detalle.xlsx'), row.names = FALSE)
 
 		source('00_code/02_reporting/viz.R')
 		create_densities_party(wrapper_party, new_output_path)
 		create_densities_coalition(wrapper_coa, new_output_path)
-		create_chamber(wrapper_coa, new_output_path)
-		print(coa_global)
+		print(as.data.frame(coa_global[coa_global$Asientos_ganados>0,]))
+		print(as.data.frame(party_global[party_global$Asientos_ganados>0,]))
+
+		#create_chamber(wrapper_coa, new_output_path)
+		create_waffle(as.data.frame(coa_global), new_output_path,'/waffle-coa.png', 'Resultado por coalicion')
+		create_waffle(as.data.frame(party_global), new_output_path,'/waffle-party.png', 'Resultado por partido')
+
 }
 

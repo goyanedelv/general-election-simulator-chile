@@ -9,3 +9,6 @@
     library(ggplot2)
     library(pbapply)
     library(yaml)
+	library(waffle)
+	library(RColorBrewer)
+
