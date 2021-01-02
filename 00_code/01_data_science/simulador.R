@@ -30,6 +30,9 @@
 	colnames(dicc_02) <- c("Sigla","Coalicion") 
 	data_original_coa = merge(data_original,dicc_02, by = "Sigla")
 
+
+SEATS = sum(seats_raw$Cupo)
+
 # 3. Construimos la generalización del D'Hondt
 
 	# 3.1. A nivel de Pacto
@@ -183,12 +186,17 @@
 		coa_global = wrapper_coa %>% group_by(Coalicion) %>%
 					summarise(Asientos_ganados = median(Asientos_ganados), .groups = 'drop')
 
-		wrapper_party = wrapper_total_detalle %>% 
+		coa_global$Asientos_ganados = round(SEATS*round(coa_global$Asientos_ganados/sum(coa_global$Asientos_ganados),4),0)
+
+		wrapper_party = wrapper_total_detalle %>%
 					group_by(Sigla, Simulacion) %>%
 					summarise(Votacion = sum(Cupos_Partido), .groups = 'drop')
+
 		colnames(wrapper_party) = c('Partido', 'Simulacion','Asientos_ganados')
 		party_global = wrapper_party %>% group_by(Partido) %>%
 					summarise(Asientos_ganados = median(Asientos_ganados), .groups = 'drop')
+
+		party_global$Asientos_ganados = round(SEATS*round(party_global$Asientos_ganados/sum(party_global$Asientos_ganados),4),0)
 		
 		new_output_path = paste0('98_output/',parameters['experiment_tag'][[1]])
 		dir.create(new_output_path)

@@ -42,8 +42,49 @@ Simulador_puntual <- function(full_new,full, sim_tag){
                                                                             round(votacion_dc*dc_upper,0))
     
         }
+
+    # PS variabilidad intrínseca
+            for (i in 1:346){
+            
+            ps_lower = parameters['lower_ps'][[1]]
+            ps_upper = parameters['upper_ps'][[1]]
+
+            votacion_ps = full_new$Votacion[full_new$Sigla == 'PS' & full_new$ID == i]
+            
+            full_new$Votacion[full_new$Sigla == 'PS' & full_new$ID == i] = runif(1,
+                                                                            round(votacion_ps*ps_lower,0),
+                                                                            round(votacion_ps*ps_upper,0))
     
+        }
+
+    # UDI variabilidad intrínseca
+            for (i in 1:346){
+            
+            udi_lower = parameters['lower_udi'][[1]]
+            udi_upper = parameters['upper_udi'][[1]]
+
+            votacion_udi = full_new$Votacion[full_new$Sigla == 'UDI' & full_new$ID == i]
+            
+            full_new$Votacion[full_new$Sigla == 'UDI' & full_new$ID == i] = runif(1,
+                                                                            round(votacion_udi*udi_lower,0),
+                                                                            round(votacion_udi*udi_upper,0))
     
+        }
+
+    # RN variabilidad intrínseca
+            for (i in 1:346){
+            
+            rn_lower = parameters['lower_rn'][[1]]
+            rn_upper = parameters['upper_rn'][[1]]
+
+            votacion_rn = full_new$Votacion[full_new$Sigla == 'RN' & full_new$ID == i]
+            
+            full_new$Votacion[full_new$Sigla == 'RN' & full_new$ID == i] = runif(1,
+                                                                            round(votacion_rn*rn_lower,0),
+                                                                            round(votacion_rn*rn_upper,0))
+    
+        }
+
     # RN, DC, EVO absorben al PRI
 
         elasticidad_rn_pri = parameters['elesticidad_rn_pri'][[1]]
