@@ -28,7 +28,21 @@
     full_new = full[c('ID', 'Sigla', 'Votacion')]
 
 
-Simulador_puntual <- function(full_new,full, sim_tag){ 
+Simulador_puntual <- function(full_new,full, sim_tag){
+        # Participacion Total
+            for (i in 1:346){
+            
+            tt_lower = parameters['lower_total'][[1]]
+            tt_upper = parameters['upper_total'][[1]]
+
+            votacion_tt = full_new$Votacion[full_new$ID == i]
+
+            factor_tt = runif(1, tt_lower, tt_upper)
+            
+            full_new$Votacion[full_new$ID == i] = round(votacion_tt*factor_tt,0)
+    
+        }
+    
     # DC variabilidad intrínseca
             for (i in 1:346){
             
@@ -84,6 +98,8 @@ Simulador_puntual <- function(full_new,full, sim_tag){
                                                                             round(votacion_rn*rn_upper,0))
     
         }
+
+
 
     # RN, DC, EVO absorben al PRI
 

@@ -1,9 +1,9 @@
-n_simulaciones: 50
+n_simulaciones: 20
 n_cores: 10
 
 coaliciones: 'D2020'
 
-experiment_tag: 'experimento_028_convencionales_variabilidad_mean'
+experiment_tag: 'experimento_029_paquetes'
 
 # Modos: 'concejales', 'convencionales', 'diputados'
 modo: 'convencionales'
@@ -49,3 +49,13 @@ lower_rn: 0.7
 # Movimiento UDI
 upper_udi: 1.1
 lower_udi: 0.7
+
+# Participacion total (vs 2016)
+# 2016: 4.7 millones de votos válidos (35%)
+upper_total: 1.7
+lower_total: 1
+
+# Info. padron
+padron_total: 14753394
+blancos_promedio: 0.02
+nulos_promedio: 0.02

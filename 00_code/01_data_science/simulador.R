@@ -217,5 +217,22 @@ SEATS = sum(seats_raw$Cupo)
 		create_waffle(as.data.frame(coa_global), new_output_path,'/waffle-coa.png', 'Resultado por coalicion')
 		create_waffle(as.data.frame(party_global), new_output_path,'/waffle-party.png', 'Resultado por partido')
 
+		# Reportar votacion-participación
+		participacion = wrapper_total_detalle %>% group_by(Simulacion) %>%
+					summarise(Participacion = sum(Votacion), .groups = 'drop')
+		
+		print(paste0('Participacion estimada:'))
+		print(summary(participacion$Participacion)[1])
+		print(summary(participacion$Participacion)[2])
+		print(summary(participacion$Participacion)[3])
+		print(summary(participacion$Participacion)[4])
+		print(summary(participacion$Participacion)[5])
+		print(summary(participacion$Participacion)[6])
+
+		
+		nulos_y_blancos = (parameters['blancos_promedio'][[1]]+parameters['nulos_promedio'][[1]])*parameters['padron_total'][[1]]
+
+		print(round(100*(median(participacion$Participacion) + nulos_y_blancos)/parameters['padron_total'][[1]],1))
+
 }
 
