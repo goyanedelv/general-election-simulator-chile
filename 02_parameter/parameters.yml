@@ -1,12 +1,12 @@
-n_simulaciones: 20
+n_simulaciones: 100
 n_cores: 10
 
-coaliciones: 'D2020'
+coaliciones: 'M2021'
 
-experiment_tag: 'experimento_029_paquetes'
+experiment_tag: 'experimento_031_Mayo_2021_concejales'
 
 # Modos: 'concejales', 'convencionales', 'diputados'
-modo: 'convencionales'
+modo: 'concejales'
 
 # Nuevos votos de Evopoli, se le roban a la UDI y RN.
 # Elasticidades: 1 = udi + rn
@@ -35,25 +35,29 @@ elasticidad_rd_ps: 0.25
 
 # Movimiento DC
 # Mantiene su historico con variabilidad hacia arriba y hacia abajo
-upper_dc: 1.2
-lower_dc: 0.8
+upper_dc: 1.3
+lower_dc: 0.9
 
 # Movimiento PS
-upper_ps: 1.1
+upper_ps: 1.2
 lower_ps: 0.9
 
 # Movimiento RN
-upper_rn: 1.1
+upper_rn: 1.0
 lower_rn: 0.7
 
 # Movimiento UDI
-upper_udi: 1.1
+upper_udi: 1.0
 lower_udi: 0.7
+
+# Movimiento PC
+upper_pc: 1.4
+lower_pc: 1.1
 
 # Participacion total (vs 2016)
 # 2016: 4.7 millones de votos válidos (35%)
 upper_total: 1.7
-lower_total: 1
+lower_total: 1.0
 
 # Info. padron
 padron_total: 14753394

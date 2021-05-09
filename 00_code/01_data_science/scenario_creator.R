@@ -98,7 +98,20 @@ Simulador_puntual <- function(full_new,full, sim_tag){
                                                                             round(votacion_rn*rn_upper,0))
     
         }
+    
+    # PC variabilidad intrínseca
+            for (i in 1:346){
+            
+            pc_lower = parameters['lower_pc'][[1]]
+            pc_upper = parameters['upper_pc'][[1]]
 
+            votacion_pc = full_new$Votacion[full_new$Sigla == 'PC' & full_new$ID == i]
+            
+            full_new$Votacion[full_new$Sigla == 'PC' & full_new$ID == i] = runif(1,
+                                                                            round(votacion_pc*pc_lower,0),
+                                                                            round(votacion_pc*pc_upper,0))
+    
+        }
 
 
     # RN, DC, EVO absorben al PRI
@@ -237,6 +250,7 @@ Simulador_puntual <- function(full_new,full, sim_tag){
                 full_new$Votacion[full_new$Sigla == 'PS' & full_new$ID == i] = max(0, votacion_ps-nuevos_votos_rd*elasticidad_rd_ps)
 
             }
+    
     #
     
     # To-do: Votos 'nuevos'

@@ -164,7 +164,7 @@ SEATS = sum(seats_raw$Cupo)
 		print('Simulando elecciones:')
 		ptime_2 <- system.time({
 		rr <- mclapply(multiples_escenarios, ElectoSimulate, mc.cores = nucleos)
-		
+		# rr <- mapply(ElectoSimulate, multiples_escenarios )
 			})[3]
 		
 		print(paste0(n_escenarios, ' escenarios simulados en ',round(ptime_2,0),' segundos'))
